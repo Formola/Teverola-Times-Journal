@@ -1,0 +1,33 @@
+.navbar{
+    height: 140px;
+    display: flex;
+    padding: 10px 10px;
+    box-shadow: 0px 3px 7.5px rgba(0,0,0,0.1);
+    justify-content: space-between;
+
+}
+
+.nav--logo{
+   
+    margin-bottom: 10px;
+    max-width: 200px;
+    max-height: 120px;
+}
+
+.nav--title{
+    
+    padding-left: 100px;
+    font-size: 70px;
+    display: table-cell;
+    vertical-align: middle;
+    font-family: 'Lobster Two', cursive;
+    color: rgb(91, 223, 223);
+
+}
+
+.button.is-primary.is-rounded {
+    background-color:rgb(56, 196, 248);
+    pointer-events: none;
+    margin-right: 20px;
+    color: black;
+}
