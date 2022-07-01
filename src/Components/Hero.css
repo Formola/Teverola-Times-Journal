@@ -1,0 +1,94 @@
+.Hero{
+    display: inline;
+}
+
+
+.hero--gif{
+    position: absolute;
+    left: 75%;
+    margin-top: -200px;
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.hero--papericon{
+    font-size: 100px;
+    margin-left: 80px;
+    margin-top: 50px;
+    float: left;
+    
+}
+
+.hero--pencil{
+    font-size: 70px;
+    margin-left: -85px;
+    margin-top: 130px;
+    float: left;
+}
+
+.text1{
+    margin-left: 50px;
+    margin-top: 60px;
+    display: inline-block;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.text2{
+    margin-left: 55px;
+    margin-top: 10px;
+    display: inline-block;
+    font-size: 17px;
+
+}
+
+.text3{
+    margin-left: 50px;
+    margin-top: 120px;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 30px;
+
+}
+
+.text4{
+    margin-left: 230px;
+    margin-top: 10px;
+    display: inline-block;
+    font-size: 17px;
+
+}
+
+.hero--buttons{
+
+    pointer-events: none;
+    margin-top: 100px;
+    margin-left: 200px;
+    margin-right: 200px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button.is-danger.is-rounded{
+    width: 350px;
+    height: 100px;
+    background-color: rgb(212, 16, 16);
+}
+
+.button.is-success.is-rounded{
+    width: 350px;
+    height: 100px;
+    display: inline-block;
+    
+}
+
+.cash-icon{
+    font-size: 40px;
+    margin-left: 25px;
+    margin-top: 20px;
+}
+
+.write-icon{
+    font-size: 35px;
+    margin-top: 30px;
+}
