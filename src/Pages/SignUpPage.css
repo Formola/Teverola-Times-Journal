@@ -1,0 +1,39 @@
+.title.is-1{
+    margin-top: 20px;
+    margin-bottom: 55px;
+}
+
+.hero-body{
+    margin-top: -60px;
+}
+
+.button{
+    margin-top: 30px;
+    background-color: aqua;
+    color: black;
+}
+
+.signup--gif{
+    max-width: 300px;
+    max-height: 300px;
+    position: absolute;
+}
+
+.signup--gif2{
+    max-width: 300px;
+    max-height: 300px;
+    position: absolute;
+    left: 75%;
+}
+
+.image{
+    position: absolute;
+    margin-top: 10px;
+}
+
+.back-arrow{
+    position: absolute;
+    margin-top: 40px;
+    margin-left: 5px;
+    font-size: 50px;
+}

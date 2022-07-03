@@ -1,11 +1,28 @@
 import React from "react";
 import gif from "../images/hero.gif";
 import "./Hero.css"
+import {Link} from "react-router-dom";
 import {GiNewspaper } from "react-icons/gi";
 import {FaPenAlt} from "react-icons/fa";
 import {BsCashCoin,BsPencilSquare} from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
+import {GrLogin} from "react-icons/gr"
 
-export default function Hero(){
+export const Hero = () => {
+
+    const navigate = useNavigate();
+
+    const routeChange_signup = () => {
+        let signup_path = "/SignUp";
+        navigate(signup_path);
+    }
+
+    const routeChange_login = () =>{
+        let login_path = "/Login";
+        navigate(login_path);
+    }
+
+    
     return(
         <>
             <div className="Hero">
@@ -15,16 +32,16 @@ export default function Hero(){
                     </span>
                     <p className="text1">Benvenuto su Teverola Times Journal!</p>
                     <br></br>
-                    <p className="text2"> Su questo quotidiano online potrai leggere articoli di ogni tipo in base ai tuoi argomenti preferiti!</p>
+                    <p className="text2">Abbonati su questo quotidiano online e potrai leggere articoli di ogni tipo in base ai tuoi argomenti preferiti!</p>
                 </div>
 
                 <div>
                     <span className="hero--pencil">
                         <FaPenAlt/>
                     </span>
-                    <p className="text3">Registrati come Giornalista per pubblicare!</p>
+                    <p className="text3">I Giornalisti possono pubblicare!!</p>
                     <br></br>
-                    <p className="text4">Se sei un Giornalista registrati come tale per iniziare a pubblicare su Teverola Times Journal!!</p>
+                    <p className="text4">Se sei un nostro Giornalista registrati per iniziare a pubblicare su Teverola Times Journal!!</p>
                 </div>
                 
                 <div>
@@ -34,21 +51,26 @@ export default function Hero(){
             </div>
 
             <div className="hero--buttons">
-                <button class="button is-danger is-rounded">Abbonati per 0,99€ al mese! 
+                <button class="button is-danger is-rounded" onClick={routeChange_signup}>Abbonati per 0,49€ al mese! 
                     <span className="cash-icon">
                         <BsCashCoin/>
                     </span>
                 </button>
-                <button class="button is-success is-rounded">Se sei un nostro Giornalista registrati<br></br> e inizia a pubblicare!<br></br>
+
+                
+                <button class="button is-success is-rounded"  onClick={routeChange_signup}>Sei un Giornalista? Registrati<br></br> e inizia a pubblicare!<br></br>
                     <span className="write-icon">
                         <BsPencilSquare/>
                     </span>
                 </button>
 
+                <button class="button is-info is-rounded"  onClick={routeChange_login}>Effettua il Login!!<br></br>
+                    <span className="login-icon">
+                        <GrLogin/>
+                    </span>
+                </button>
+
             </div>
-
-
-
         </>
     )
 }
