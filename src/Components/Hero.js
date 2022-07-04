@@ -1,7 +1,6 @@
 import React from "react";
 import gif from "../images/hero.gif";
 import "./Hero.css"
-import {Link} from "react-router-dom";
 import {GiNewspaper } from "react-icons/gi";
 import {FaPenAlt} from "react-icons/fa";
 import {BsCashCoin,BsPencilSquare} from "react-icons/bs";

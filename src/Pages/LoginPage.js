@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import {MdAttachEmail} from "react-icons/md";
 import {RiLockPasswordFill} from "react-icons/ri"
 import {AiOutlineArrowLeft} from "react-icons/ai"
@@ -13,6 +13,29 @@ export const LoginPage = () =>{
         let path = "/";
         navigate(path); 
     }
+
+    const [formData, setFormData] = useState(
+        {
+            email: "",
+            password: ""
+        }
+    )
+
+    function handleChange(event){
+
+        const {name,value} = event.target
+        setFormData( prevFormData => {
+            return{
+                ...prevFormData,
+                [name]: value
+            }
+        })
+    }
+
+    function handleSubmit(event){
+        event.preventDefault()
+        console.log(formData)
+    }
     
     return(
         <>
@@ -24,35 +47,50 @@ export const LoginPage = () =>{
                     <div className="container">
                         <div className="columns is-centered">
                             <div className="column is-4">
+                                <form onSubmit={handleSubmit}>
+                                    <div className="field">
+                                        <label className="label has-text-white is-size-4 has-text-left" >Email</label>
+                                        <p className="control has-icons-left has-icons-right">
+                                            <input 
+                                                className="input"
+                                                type="email"
+                                                placeholder="Email"
+                                                maxLength="30"
+                                                required
+                                                name="email"
+                                                onChange={handleChange}
+                                            />
+                                            <span className="icon is-small is-left">
+                                            <MdAttachEmail/>
+                                            </span>
+                                        </p>
+                                    </div>
 
-                                <div class="field">
-                                    <label class="label has-text-white is-size-4 has-text-left" >Email</label>
-                                    <p class="control has-icons-left has-icons-right">
-                                        <input class="input" type="email" placeholder="Email" maxlength="30" required/>
-                                        <span class="icon is-small is-left">
-                                        <MdAttachEmail/>
-                                        </span>
-                                    </p>
-                                </div>
+                                    <div className="field">
+                                        <label className="label has-text-white is-size-4 has-text-left" >Password</label>
+                                        <p className="control has-icons-left">
+                                            <input 
+                                                className="input"
+                                                type="password"
+                                                placeholder="Password"
+                                                required
+                                                name="password"
+                                                onChange={handleChange}
+                                            />
+                                            <span className="icon is-small is-left">
+                                            <RiLockPasswordFill/>
+                                            </span>
+                                        </p>
+                                    </div>
 
-                                <div class="field">
-                                    <label class="label has-text-white is-size-4 has-text-left" >Password</label>
-                                    <p class="control has-icons-left">
-                                        <input class="input" type="password" placeholder="Password" required/>
-                                        <span class="icon is-small is-left">
-                                        <RiLockPasswordFill/>
-                                        </span>
-                                    </p>
-                                </div>
-
-                                <div class="field">
-                                    <p class="control">
-                                        <button class="button is-hovered is-rounded is-medium">
-                                        Login
-                                        </button>
-                                    </p>
-                                </div>
-
+                                    <div className="field">
+                                        <p className="control">
+                                            <button className="button is-hovered is-rounded is-medium">
+                                            Login
+                                            </button>
+                                        </p>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

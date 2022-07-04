@@ -1,7 +1,7 @@
 import './App.css';
 import React from "react";
 import "bulma/css/bulma.min.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {StartedPage} from "./Pages/StartedPage"
 import { SignUpPage } from './Pages/SignUpPage';
 import { LoginPage } from './Pages/LoginPage';

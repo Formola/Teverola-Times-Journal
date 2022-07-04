@@ -29,8 +29,8 @@ export default function Navbar(){
                     <h1 className="nav--title">TEVEROLA TIMES JOURNAL</h1>
             </div>
             <div className="navbar-item is-justify-content-space-between">
-                    <button class="button is-primary is-rounded is-normal" onClick={routeChange_signup}>Registrati</button>
-                    <button class="button is-primary is-rounded  is-normal" onClick={routeChange_login}>Login</button>
+                    <button className="button is-primary is-rounded is-normal" onClick={routeChange_signup}>Registrati</button>
+                    <button className="button is-primary is-rounded  is-normal" onClick={routeChange_login}>Login</button>
                 
             </div>
         </nav>
