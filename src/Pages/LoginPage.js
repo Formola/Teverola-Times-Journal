@@ -1,13 +1,21 @@
-import React,{useState} from "react";
+import React,{useContext, useState} from "react";
 import {MdAttachEmail} from "react-icons/md";
 import {RiLockPasswordFill} from "react-icons/ri"
 import {AiOutlineArrowLeft} from "react-icons/ai"
 import logo from "../images/logosenzascritta.png"
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import md5 from "md5";
+import { UserContext } from "./UserContexts";
+import { Navigate } from "react-router-dom";
 
-export const LoginPage = () =>{
+export default function LoginPage(){
 
     const navigate = useNavigate();
+    const [error, setError] = useState("")
+
+    const {user,setUser} = useContext(UserContext)
+
 
     const routeChange = () => {
         let path = "/";
@@ -28,16 +36,41 @@ export const LoginPage = () =>{
             return{
                 ...prevFormData,
                 [name]: value
+                
             }
         })
     }
 
     function handleSubmit(event){
         event.preventDefault()
-        console.log(formData)
+        console.log(formData.email, md5(formData.password))
+        setError("")
+        axios.get("http://localhost:80/Teverola-Times-Journal/index.php", {
+            params: {
+              type: "user-login",
+              data: {
+                email: formData.email,
+                password: md5(formData.password)
+              }
+      
+            }
+          })
+            .then((response) => {
+              setUser(response.data["user"])
+              window.localStorage.setItem("JWT", response.data["jwt"])
+              navigate("/HomePage", { replace: true })
+            })
+            .catch((error) => {
+              if (error.response) {
+                if (error.response.status == 401) {
+                  setError("Credenziali sbagliate.")
+                }
+              }
+            })
     }
     
     return(
+        user ? <Navigate  to="/HomePage"/> : 
         <>
             <div className="hero is-success is-fullheight is-vcentered has-text-centered is-flex">
                 <p className="title is-1">LOGIN</p>
@@ -82,12 +115,15 @@ export const LoginPage = () =>{
                                             </span>
                                         </p>
                                     </div>
-
+                                    <br></br>
                                     <div className="field">
                                         <p className="control">
                                             <button className="button is-hovered is-rounded is-medium">
                                             Login
                                             </button>
+                                            <br></br>
+                                            <br></br>
+                                            {error && (<span> {error} </span>)}
                                         </p>
                                     </div>
                                 </form>

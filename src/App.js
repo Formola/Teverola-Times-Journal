@@ -1,24 +1,81 @@
 import './App.css';
-import React from "react";
+import React,{useState,useEffect} from "react";
 import "bulma/css/bulma.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {StartedPage} from "./Pages/StartedPage"
 import { SignUpPage } from './Pages/SignUpPage';
-import { LoginPage } from './Pages/LoginPage';
+import LoginPage from './Pages/LoginPage';
+import { HomePage } from './Pages/HomePage';
+import { WriteArticle } from './Pages/WriteArticle';
+import { UserContext } from './Pages/UserContexts';
+import axios from 'axios';
+import PrivateOutlet from './Components/PrivateOutlet';
+
 
 function App() {
+
+    const [user, setUser] = useState(JSON.parse(window.localStorage.getItem("user")))
+    const [isLoading, setIsLoading] = useState(true)
+    useEffect(() => {
+        setIsLoading(true)
+        if (!user) {
+            if (!window.localStorage.getItem("JWT")) {
+                setIsLoading(false)
+                return
+            }
+            if (window.localStorage.getItem("user")) {
+                setUser(JSON.parse(window.localStorage.getItem("user")))
+                setIsLoading(false)
+                return
+            }
+            axios.get("http://localhost:80/Teverola-Times-Journal/index.php", {
+                headers: {
+                    Authorization: `Bearer ${window.localStorage.getItem("JWT")}`,
+                },
+                params: {
+                    type: "fetch-session"
+                }
+            }).then((response) => {
+                if (response.status == 200) {
+                    if (response.data["jwt-validate"]) {
+                        setUser(response.data["user"])
+                        window.localStorage.setItem("user", JSON.stringify(response.data["user"]))
+                    }
+                }
+            })
+        }
+        setIsLoading(false)
+    }, [user])
+
+    const logout = () => {
+        window.localStorage.removeItem("JWT")
+        window.localStorage.removeItem("user")
+        setUser(null)
+    }
+
+    const values = {
+        user,
+        setUser,
+        logout
+    }
+
   return (
-    <Router>
-      <Routes>
-        <Route exact path="/" element={<StartedPage/>} />
-        <Route exact path="/SignUp" element={<SignUpPage/>} />
-        <Route exact path="/Login" element={<LoginPage/>} />
+    <UserContext.Provider value={values}>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<StartedPage/>} />
+          <Route exact path="/SignUp" element={<SignUpPage/>} />
+          <Route exact path="/Login" element={<LoginPage/>} />
+        <Route path="/" element={<PrivateOutlet/>}>
+          <Route exact path="/HomePage" element={<HomePage/>} />
+          <Route exact path="/WriteArticle" element={<WriteArticle />} />
+        </Route>
 
-      </Routes>
+        </Routes>
 
 
-    </Router>
-
+      </Router>
+    </UserContext.Provider>
   );
 }
 

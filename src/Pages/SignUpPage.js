@@ -8,10 +8,13 @@ import gif from "../images/signup.gif"
 import gif2 from "../images/saldangtribute.gif"
 import logo from "../images/logosenzascritta.png"
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import md5 from "md5";
 
 export const SignUpPage = () =>{
 
     const navigate = useNavigate();
+    const [error, setError] = useState("")
 
     const routeChange = () => {
         let path = "/";
@@ -39,7 +42,23 @@ export const SignUpPage = () =>{
 
     function handleSubmit(event){
         event.preventDefault()
-        console.log(formData)
+        console.log(formData.nome, formData.cognome, formData.email, md5(formData.password))
+        axios.post("http://localhost:80/Teverola-Times-Journal/index.php", {
+            type: "user-signup",
+            data: {
+                nome: formData.nome,
+                cognome: formData.cognome,
+                email: formData.email,
+                password: md5(formData.password)
+            },
+        },{
+            headers: {
+               'Content-Type': 'application/x-www-form-urlencoded',
+            } 
+       })
+        .then((response) => {
+            console.log(response)
+        })
     }
 
     return(

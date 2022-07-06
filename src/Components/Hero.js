@@ -13,12 +13,12 @@ export const Hero = () => {
 
     const routeChange_signup = () => {
         let signup_path = "/SignUp";
-        navigate(signup_path);
+        navigate(signup_path, {replace: true});
     }
 
     const routeChange_login = () =>{
         let login_path = "/Login";
-        navigate(login_path);
+        navigate(login_path, {replace: true});
     }
 
     

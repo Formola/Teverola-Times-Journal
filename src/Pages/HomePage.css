@@ -1,0 +1,29 @@
+.label:not(:last-child){
+
+    margin-right: 50px;
+    margin-left: -50px;
+}
+
+.is-medium.input, .is-medium.textarea{
+    width: 400px;
+    margin-right: 20px;
+}
+
+.icon-search{
+    margin-top: 10px;
+    margin-left: -10px;
+    font-size: 25px;
+}
+
+.user-type{
+    margin-bottom: 60px;
+}
+
+.button {
+    margin-top: 0px
+}
+
+.buttons:last-child{
+    margin-left: -100px;
+    margin-top: 50px;
+}   
