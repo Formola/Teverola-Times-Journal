@@ -79,7 +79,7 @@ export default function LoginPage(){
                 <div className="hero-body">
                     <div className="container">
                         <div className="columns is-centered">
-                            <div className="column is-4">
+                            <div className="column is-4 mgt-large">
                                 <form onSubmit={handleSubmit}>
                                     <div className="field">
                                         <label className="label has-text-white is-size-4 has-text-left" >Email</label>

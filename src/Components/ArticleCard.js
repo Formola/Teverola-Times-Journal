@@ -1,7 +1,25 @@
 import React from "react";
 import "./ArticleCard.css"
+import { useNavigate } from "react-router-dom";
 
 export const ArticleCard = (props) => {
+
+    const navigate = useNavigate()
+
+    function changeRouteArticlePage(){
+        let path="/ArticlePage"
+        navigate(path, {
+            state: {
+                id_article: props.id_article,
+                titolo: props.titolo,
+                argomento: props.argomento,
+                body: props.body,
+                img: props.img,
+                datapubblicazione: props.datapubblicazione,
+                journalist_id: props.journalist_id 
+            }
+        })
+    }
 
     return(
         <>
@@ -13,15 +31,15 @@ export const ArticleCard = (props) => {
                 <div className="card-content">  
 
                     <div className="card-title">
-                        <h3>titolo</h3>
+                        <h3 className="has-text-weight-bold	">{props.titolo}</h3>
                     </div>
-                    <div className="card-body">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Phasellus nec iaculis mauris.
-                        <br/>
-                        <time dateTime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                    <div className="card-body ">
+                        {props.body.slice(0,200)}
                         <br></br>
-                        <button className="button is-text">Read More</button>
+                        <br></br>
+                        <time >{props.datapubblicazione}</time>
+                        <br></br>
+                        <button className="button is-text" onClick={changeRouteArticlePage}>Read More</button>
                     </div>
                 </div>
             </div>

@@ -1,8 +1,11 @@
-import React,{useState,useContext} from "react";
+import React,{useState,useContext,useEffect} from "react";
 import logo from "../images/logo.png"
 import {AiOutlineSearch} from "react-icons/ai"
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../Pages/UserContexts";
+import axios from "axios"
+import { HomePage } from "../Pages/HomePage";
+
 
 
 export default function HomeNavbar(props){
@@ -13,6 +16,11 @@ export default function HomeNavbar(props){
     const [searchBar, setSearchBar] = useState({
         searchText: ""
     })
+
+    function clearBar(){
+        setSearchBar("")
+        console.log(searchBar)
+    }
 
     function handleSearch(event){
         const {name,value} = event.target
@@ -25,27 +33,28 @@ export default function HomeNavbar(props){
 
     }
 
-    let functional_button;
-
     function handleSubmit(event){
         event.preventDefault()
         console.log(searchBar)
+        props.get_data(searched_articles)
     }
 
     const navigate = useNavigate();
 
-    function changeRoute(){
+    function changeRouteWrite(){
         let path = "/WriteArticle"
         navigate(path)
     }
 
+    let functional_button;
+    
     if ( props.userType == "ADMIN"){
         functional_button = (
-            <button className="button is-white">Gestisci Utenti</button>
+            <button className="button is-white" onClick={changeRouteManagement}>Gestisci Utenti</button>
         )
     } else if ( props.userType == "GIORNALISTA"){
         functional_button = (
-            <button className="button is-white" onClick={changeRoute}>Pubblica</button>
+            <button className="button is-white" onClick={changeRouteWrite}>Pubblica</button>
         )
     } else {
         functional_button = (<></>)
@@ -55,6 +64,41 @@ export default function HomeNavbar(props){
         logout()
         navigate("/")
     }
+
+    function changeRouteProfile(){
+        let path="/ProfilePage"
+        navigate(path)
+    }
+
+    function changeRouteManagement(){
+        let path="/GestioneUtenti"
+        navigate(path)
+    }
+
+    const [articlesFromSearch, setArticlesFromSearch] = useState([])
+
+    useEffect( () => {
+        axios.get("http://localhost:80/Teverola-Times-Journal/index.php",{
+            params: {
+                type: "get-from-searchbar",
+                data: {
+                    keyword: searchBar.searchText
+                }
+            }
+        })
+        .then((response) => {   
+            setArticlesFromSearch(response.data)
+        })
+
+    },[searchBar])
+
+
+    const searched_articles = articlesFromSearch.map( (articolo) => {
+        return(
+            {...articolo}
+        )
+        
+    })
 
     return(
         <>
@@ -67,7 +111,7 @@ export default function HomeNavbar(props){
                 <div id="navbarBasicExample" className="navbar-menu">
                     <div className="navbar-start">
                         <p className="navbar-item">
-                            Il Tuo Profilo
+                            <button className="button is-white" onClick={changeRouteProfile}>Il Tuo Profilo</button>
                         </p>
                         <p className="navbar-item">
                             {functional_button}
@@ -87,7 +131,7 @@ export default function HomeNavbar(props){
                                     
                                 />
                                 <button className="button is-white"><span className="icon-search"><AiOutlineSearch/></span></button>
-                            </div>
+                                </div>
                         </form>
                      </div>
 

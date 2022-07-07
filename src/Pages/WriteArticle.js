@@ -1,10 +1,14 @@
-import React,{useState} from "react";
+import React,{useState,useContext} from "react";
 import logo from "../images/logosenzascritta.png"
 import {AiOutlineArrowLeft} from "react-icons/ai"
 import "./WriteArticle.css"
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "./UserContexts";
 
 export const WriteArticle = () => {
+
+    const {user,setUser} = useContext(UserContext)
+
 
     const [articleData, setArticleData] = useState(
         {
@@ -41,9 +45,10 @@ export const WriteArticle = () => {
     }
 
     return(
+         user.UserType == "GIORNALISTA" ? 
         <>
             <div className="hero is-primary is-fullheight has-text-centered is-vcentered is-flex">
-                <h1 className="title is-2 has-text-centered	mt-5 mb-6" >SCRIVI ARTICOLO</h1>
+                <h1 className="title is-2 has-text-centered	mt-5 mb-6" >Ciao {user.Nome}...SCRIVI ARTICOLO</h1>
                 <span className="back-arrow"><AiOutlineArrowLeft/></span>
                 <img src={logo} alt="logo" onClick={changeRoute} className="image is-138x128 mgl-medium"/>
 
@@ -126,5 +131,6 @@ export const WriteArticle = () => {
             </div>
 
         </>
+        : navigate("/HomePage")
     )
 }

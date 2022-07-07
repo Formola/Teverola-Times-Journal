@@ -50,7 +50,7 @@ export const Hero = () => {
             </div>
 
             <div className="hero--buttons">
-                <button class="button is-danger is-rounded" onClick={routeChange_signup}>Abbonati per 0,49€ al mese! 
+                <button class="button is-danger is-rounded" onClick={routeChange_signup}>Abbonati! 
                     <span className="cash-icon">
                         <BsCashCoin/>
                     </span>

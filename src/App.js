@@ -10,6 +10,9 @@ import { WriteArticle } from './Pages/WriteArticle';
 import { UserContext } from './Pages/UserContexts';
 import axios from 'axios';
 import PrivateOutlet from './Components/PrivateOutlet';
+import ProfilePage from './Pages/ProfilePage';
+import GestioneUtenti from './Pages/GestioneUtenti';
+import ArticlePage from './Pages/ArticlePage';
 
 
 function App() {
@@ -69,6 +72,9 @@ function App() {
         <Route path="/" element={<PrivateOutlet/>}>
           <Route exact path="/HomePage" element={<HomePage/>} />
           <Route exact path="/WriteArticle" element={<WriteArticle />} />
+          <Route exact path="/ProfilePage" element={<ProfilePage/>}/>
+          <Route exact path="/GestioneUtenti" element={<GestioneUtenti/>} />
+          <Route exact path="/ArticlePage" element={<ArticlePage/>} />
         </Route>
 
         </Routes>
