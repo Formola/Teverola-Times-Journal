@@ -4,7 +4,6 @@ import {useLocation, useNavigate} from 'react-router-dom';
 import logo from "../images/logosenzascritta.png"
 import "./ArticlePage.css"
 import axios from "axios"
-import { GiOneEyed } from "react-icons/gi";
 
 export default function ArticlePage(){
 
@@ -14,7 +13,6 @@ export default function ArticlePage(){
     const navigate = useNavigate()
 
     function changeRoute(){
-        console.log("click")
         let path="/HomePage"
         navigate(path)
     }
@@ -34,11 +32,11 @@ export default function ArticlePage(){
     
     },[])
 
-    const giornalisti = journalists.map ( (giornalista) => {
+    const giornalista = journalists.map ( (giornalista) => {
         return(
             <>
-                <p>{giornalista.Nome} {giornalista.Cognome}</p>
-                <img src={giornalista.img} alt="journalist-pic" width={150} height={100}/>
+                <p key={location.state.journalist_id}>{giornalista.Nome} {giornalista.Cognome}</p>
+                <img src={giornalista.img} alt="journalist-pic" width={150} height={100} />
             </>
         )
     })
@@ -48,12 +46,12 @@ export default function ArticlePage(){
         location.state ? 
         <>
             <div className="hero is-fullheight has-background-primary-light	">
-            <div className="p-2">
+                <div className="mb-6">
                     <span className="back-arrow"><AiOutlineArrowLeft/></span>
-                    <img src={logo} alt="logo" onClick={changeRoute} className="image is-138x128 mgl-medium"/>
+                    <img src={logo} alt="logo" onClick={changeRoute} className="image is-138x128"/>
                 </div>
                 
-                <div className="hero-body container is-vcentered mt-6 ml-8 is-justify-content-space-between	">
+                <div className="hero-body container is-vcentered mt-6 ml-6 is-justify-content-space-between	">
 
                     <div className=" has-text-black has-text-centered column is-two-fifths">
                         
@@ -75,16 +73,15 @@ export default function ArticlePage(){
                                     <time>{location.state.datapubblicazione}</time>
                                     <br></br>
                                     <br></br>
-                                    {"Pubblicato da : "}{giornalisti}
+                                    {"Pubblicato da : "}{giornalista}
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                        <img alt="article-pic" src={location.state.img} className="image is-relative" width={500} height={300}/>
-                    
+                        <img alt="article-pic" src={location.state.img} className="image is-relative mb-6" width={500} height={300}/>
+    
                 </div>
-
             </div > 
         </>
         : navigate("/HomePage")

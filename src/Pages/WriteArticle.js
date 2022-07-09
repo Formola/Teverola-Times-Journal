@@ -4,11 +4,13 @@ import {AiOutlineArrowLeft} from "react-icons/ai"
 import "./WriteArticle.css"
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "./UserContexts";
+import axios from "axios";
 
 export const WriteArticle = () => {
 
     const {user,setUser} = useContext(UserContext)
 
+    const [message,setMessage] = useState("")
 
     const [articleData, setArticleData] = useState(
         {
@@ -35,6 +37,25 @@ export const WriteArticle = () => {
     function handleSubmit(event){
         event.preventDefault()
         console.log(articleData)
+        axios.post("http://localhost:80/Teverola-Times-Journal/publish-article.php", {
+            data: {
+                title: articleData.title,
+                argomento : articleData.argomento,
+                body: articleData.body,
+                img: articleData.img,
+                id_utente: user.User_ID
+            },
+        }, {
+            headers: {
+               'Content-Type': 'application/x-www-form-urlencoded'
+            } 
+       })
+       .then((response) => {
+            if(response.data === "Query inviata con successo"){
+                setMessage("Articolo Pubbliato !")
+                navigate("/HomePage")
+            }
+       })
     }
 
     const navigate = useNavigate()
@@ -45,7 +66,7 @@ export const WriteArticle = () => {
     }
 
     return(
-         user.UserType == "GIORNALISTA" ? 
+         user.UserType === "GIORNALISTA" ? 
         <>
             <div className="hero is-primary is-fullheight has-text-centered is-vcentered is-flex">
                 <h1 className="title is-2 has-text-centered	mt-5 mb-6" >Ciao {user.Nome}...SCRIVI ARTICOLO</h1>
@@ -61,7 +82,7 @@ export const WriteArticle = () => {
                                         <label className="label has-text-white is-size-4 has-text-left" >Titolo</label>
                                         <p className="control">
                                             <input 
-                                                className="input"
+                                                className="input is-capitalized	"
                                                 type="text"
                                                 placeholder="Titolo"
                                                 maxLength="20"
@@ -95,7 +116,7 @@ export const WriteArticle = () => {
                                             <input 
                                                 className="input"
                                                 type="text"
-                                                placeholder="Immagine Articolo"
+                                                placeholder="Inserisci Url immagine articolo"
                                                 maxLength="2048"
                                                 name="img"
                                                 onChange={handleChange}
@@ -124,9 +145,12 @@ export const WriteArticle = () => {
                                             </button>
                                     </div>
                                 </form>
+                                <br></br>
+                                {message}
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
 

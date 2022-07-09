@@ -43,7 +43,6 @@ export default function LoginPage(){
 
     function handleSubmit(event){
         event.preventDefault()
-        console.log(formData.email, md5(formData.password))
         setError("")
         axios.get("http://localhost:80/Teverola-Times-Journal/index.php", {
             params: {
@@ -62,7 +61,7 @@ export default function LoginPage(){
             })
             .catch((error) => {
               if (error.response) {
-                if (error.response.status == 401) {
+                if (error.response.status === 401) {
                   setError("Credenziali sbagliate.")
                 }
               }

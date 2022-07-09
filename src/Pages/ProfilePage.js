@@ -1,18 +1,15 @@
-import React,{useState,useContext} from "react";
+import React,{useState,useContext, useEffect} from "react";
 import "./ProfilePage.css"
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import logo from "../images/logosenzascritta.png"
 import { UserContext } from "./UserContexts";
-import { useNavigate } from "react-router-dom";
-import {ChangeUserForm} from "../Components/ChangeUserForm"
+import { useNavigate,  } from "react-router-dom";
+import axios from "axios";
 
 
 export default function ProfilePage(){
 
-    const [ modify, setModify] = useState(false)
-
     const {user,setUser} = useContext(UserContext)
-    console.log(user)
 
     const navigate = useNavigate()
 
@@ -22,11 +19,41 @@ export default function ProfilePage(){
     }
 
     function handleClick(){
-        setModify(true)
+        navigate("/ModificaProfilo", {
+            state: {
+                nome: user.Nome,
+                cognome: user.Cognome,
+                img: user.img,
+                user_id: user.User_ID
+            }
+        })
     }
+    console.log(user)
+
+    useEffect(() => {
+        if (!window.localStorage.getItem("JWT")) {
+            return
+        }
+        if (user) {
+            axios.get("http://localhost:80/Teverola-Times-Journal/index.php", {
+                headers: {
+                    Authorization: `Bearer ${window.localStorage.getItem("JWT")}`,
+                },
+                params: {
+                    type: "fetch-session"
+                }
+            }).then((response) => {
+                if (response.status === 200) {
+                    if (response.data["jwt-validate"]) {
+                        setUser(response.data["user"])
+                    }
+                }
+            })
+        }
+    }, [])
 
     let other_info
-    if ( user.UserType == "GIORNALISTA"){
+    if ( user.UserType === "GIORNALISTA"){
         other_info = (
             <div className="column"> 
                 <div className="is-flex-direction-column">
@@ -35,7 +62,7 @@ export default function ProfilePage(){
                 </div>
             </div>
         )
-    } else if ( user.UserType == "UTENTE"){
+    } else if ( user.UserType === "UTENTE"){
         other_info = (
             <div className="column"> 
                 <div className="is-flex-direction-column">
@@ -52,7 +79,6 @@ export default function ProfilePage(){
     }
 
     return(
-        modify ? <ChangeUserForm/> : 
         <>
             <section className="hero is-fullheight has-background-warning-light">
                 <div className="p-2">
@@ -111,7 +137,6 @@ export default function ProfilePage(){
                     </div>
                 </div>
             </section > 
-
         </>
     )
 }

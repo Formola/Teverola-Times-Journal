@@ -4,9 +4,6 @@ import {AiOutlineSearch} from "react-icons/ai"
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../Pages/UserContexts";
 import axios from "axios"
-import { HomePage } from "../Pages/HomePage";
-
-
 
 export default function HomeNavbar(props){
 
@@ -16,11 +13,6 @@ export default function HomeNavbar(props){
     const [searchBar, setSearchBar] = useState({
         searchText: ""
     })
-
-    function clearBar(){
-        setSearchBar("")
-        console.log(searchBar)
-    }
 
     function handleSearch(event){
         const {name,value} = event.target
@@ -48,11 +40,11 @@ export default function HomeNavbar(props){
 
     let functional_button;
     
-    if ( props.userType == "ADMIN"){
+    if ( props.userType === "ADMIN"){
         functional_button = (
             <button className="button is-white" onClick={changeRouteManagement}>Gestisci Utenti</button>
         )
-    } else if ( props.userType == "GIORNALISTA"){
+    } else if ( props.userType === "GIORNALISTA"){
         functional_button = (
             <button className="button is-white" onClick={changeRouteWrite}>Pubblica</button>
         )
@@ -91,6 +83,8 @@ export default function HomeNavbar(props){
         })
 
     },[searchBar])
+
+    //console.log(articlesFromSearch)
 
 
     const searched_articles = articlesFromSearch.map( (articolo) => {

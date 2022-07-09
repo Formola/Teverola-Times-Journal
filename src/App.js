@@ -13,24 +13,19 @@ import PrivateOutlet from './Components/PrivateOutlet';
 import ProfilePage from './Pages/ProfilePage';
 import GestioneUtenti from './Pages/GestioneUtenti';
 import ArticlePage from './Pages/ArticlePage';
-
+import ModificaUtenti from './Pages/ModificaUtenti';
+import ModificaProfilo from './Pages/ModificaProfilo';
 
 function App() {
 
     const [user, setUser] = useState(JSON.parse(window.localStorage.getItem("user")))
-    const [isLoading, setIsLoading] = useState(true)
+
     useEffect(() => {
-        setIsLoading(true)
         if (!user) {
             if (!window.localStorage.getItem("JWT")) {
-                setIsLoading(false)
                 return
             }
-            if (window.localStorage.getItem("user")) {
-                setUser(JSON.parse(window.localStorage.getItem("user")))
-                setIsLoading(false)
-                return
-            }
+
             axios.get("http://localhost:80/Teverola-Times-Journal/index.php", {
                 headers: {
                     Authorization: `Bearer ${window.localStorage.getItem("JWT")}`,
@@ -39,7 +34,7 @@ function App() {
                     type: "fetch-session"
                 }
             }).then((response) => {
-                if (response.status == 200) {
+                if (response.status === 200) {
                     if (response.data["jwt-validate"]) {
                         setUser(response.data["user"])
                         window.localStorage.setItem("user", JSON.stringify(response.data["user"]))
@@ -47,7 +42,6 @@ function App() {
                 }
             })
         }
-        setIsLoading(false)
     }, [user])
 
     const logout = () => {
@@ -69,14 +63,15 @@ function App() {
           <Route exact path="/" element={<StartedPage/>} />
           <Route exact path="/SignUp" element={<SignUpPage/>} />
           <Route exact path="/Login" element={<LoginPage/>} />
-        <Route path="/" element={<PrivateOutlet/>}>
-          <Route exact path="/HomePage" element={<HomePage/>} />
-          <Route exact path="/WriteArticle" element={<WriteArticle />} />
-          <Route exact path="/ProfilePage" element={<ProfilePage/>}/>
-          <Route exact path="/GestioneUtenti" element={<GestioneUtenti/>} />
-          <Route exact path="/ArticlePage" element={<ArticlePage/>} />
-        </Route>
-
+          <Route path="/" element={<PrivateOutlet/>}>
+            <Route exact path="/HomePage" element={<HomePage/>} />
+            <Route exact path="/WriteArticle" element={<WriteArticle />} />
+            <Route exact path="/ProfilePage" element={<ProfilePage/>}/>
+            <Route exact path="/GestioneUtenti" element={<GestioneUtenti/>} />
+            <Route exact path="/ArticlePage" element={<ArticlePage/>} />
+            <Route exact path="/ModificaUtenti" element={<ModificaUtenti/>}/>
+            <Route exact path="/ModificaProfilo" element={<ModificaProfilo/>}/>
+          </Route>
         </Routes>
 
 

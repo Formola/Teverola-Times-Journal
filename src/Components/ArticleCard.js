@@ -31,7 +31,7 @@ export const ArticleCard = (props) => {
                 <div className="card-content">  
 
                     <div className="card-title">
-                        <h3 className="has-text-weight-bold	">{props.titolo}</h3>
+                        <h3 className="has-text-weight-bold	is-capitalized">{props.titolo}</h3>
                     </div>
                     <div className="card-body ">
                         {props.body.slice(0,200)}

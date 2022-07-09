@@ -4,6 +4,6 @@ import { UserContext } from '../Pages/UserContexts';
 
 export default function PrivateOutlet() {
     const { user } = useContext(UserContext)
-    console.log(user)
+    //console.log(user)
     return user ? <Outlet /> : <Navigate to="/" />;
   }

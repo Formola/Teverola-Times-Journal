@@ -50,20 +50,20 @@ export const Hero = () => {
             </div>
 
             <div className="hero--buttons">
-                <button class="button is-danger is-rounded" onClick={routeChange_signup}>Abbonati! 
+                <button className="button is-danger is-rounded" onClick={routeChange_signup}>Abbonati! 
                     <span className="cash-icon">
                         <BsCashCoin/>
                     </span>
                 </button>
 
                 
-                <button class="button is-success is-rounded"  onClick={routeChange_signup}>Sei un Giornalista? Registrati<br></br> e inizia a pubblicare!<br></br>
+                <button className="button is-success is-rounded"  onClick={routeChange_signup}>Sei un Giornalista? Registrati<br></br> e inizia a pubblicare!<br></br>
                     <span className="write-icon">
                         <BsPencilSquare/>
                     </span>
                 </button>
 
-                <button class="button is-info is-rounded"  onClick={routeChange_login}>Effettua il Login!!<br></br>
+                <button className="button is-info is-rounded"  onClick={routeChange_login}>Effettua il Login!!<br></br>
                     <span className="login-icon">
                         <GrLogin/>
                     </span>
