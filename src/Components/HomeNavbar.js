@@ -27,8 +27,9 @@ export default function HomeNavbar(props){
 
     function handleSubmit(event){
         event.preventDefault()
-        console.log(searchBar)
-        props.get_data(searched_articles)
+        props.get_data(articlesFromSearch)
+        setSearchBar({searchText: ""})
+        
     }
 
     const navigate = useNavigate();
@@ -84,15 +85,6 @@ export default function HomeNavbar(props){
 
     },[searchBar])
 
-    //console.log(articlesFromSearch)
-
-
-    const searched_articles = articlesFromSearch.map( (articolo) => {
-        return(
-            {...articolo}
-        )
-        
-    })
 
     return(
         <>
@@ -118,7 +110,7 @@ export default function HomeNavbar(props){
                                 <input 
                                     className="input is-medium" 
                                     type="text"
-                                    placeholder="Cerca keyword"
+                                    placeholder="Cerca Articolo per @Argomento..."
                                     onChange={handleSearch}
                                     name="searchText"
                                     value={searchBar.searchText}

@@ -23,7 +23,7 @@ export const ArticleCard = (props) => {
 
     return(
         <>
-            <div className="section">
+            <div className="section ">
                 <div className="img-article">
                     <img src={props.img} alt="img" />
                 </div>
@@ -32,6 +32,8 @@ export const ArticleCard = (props) => {
 
                     <div className="card-title">
                         <h3 className="has-text-weight-bold	is-capitalized">{props.titolo}</h3>
+                        <h5 className="has-text-weight-bold	is-capitalized">@{props.argomento}</h5>
+                        <br></br>
                     </div>
                     <div className="card-body ">
                         {props.body.slice(0,200)}

@@ -60,6 +60,14 @@ export const SignUpPage = () =>{
         .then((response) => {
             setError(response.data)
         })
+        .catch((error) => {
+            if (error.response) {
+              if(error.response.status === 0 ){
+                  setError("Controlla la connessione ad internet")
+              }
+              
+            }
+          })
     }
 
     return(

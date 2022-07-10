@@ -51,7 +51,7 @@ export default function ModificaUtenti(){
     let funcional_change_label 
     let funcional_change_input
 
-    if(formData.ruolo == "GIORNALISTA"){
+    if(formData.ruolo === "GIORNALISTA"){
         funcional_change_label = (
             <>
                 <label className="label has-text-black is-size-4 has-text-left">Nome attuale : {user.nome}</label>

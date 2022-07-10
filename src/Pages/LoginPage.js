@@ -61,6 +61,9 @@ export default function LoginPage(){
             })
             .catch((error) => {
               if (error.response) {
+                if(error.response.status === 0 ){
+                    setError("Controlla la connessione ad internet")
+                }
                 if (error.response.status === 401) {
                   setError("Credenziali sbagliate.")
                 }

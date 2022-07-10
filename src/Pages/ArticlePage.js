@@ -1,16 +1,23 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect,useState,useContext } from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
-import {useLocation, useNavigate} from 'react-router-dom';
+import {Navigate, useLocation, useNavigate} from 'react-router-dom';
 import logo from "../images/logosenzascritta.png"
 import "./ArticlePage.css"
 import axios from "axios"
+import { UserContext } from "./UserContexts";
 
 export default function ArticlePage(){
 
     const location = useLocation()
     const [journalists, setJournalists] = useState([])
+    const {user,setUser} = useContext(UserContext)
 
     const navigate = useNavigate()
+
+    if (location.state == null) {
+            
+        return <Navigate to="/HomePage"/>
+    }
 
     function changeRoute(){
         let path="/HomePage"
@@ -40,6 +47,30 @@ export default function ArticlePage(){
             </>
         )
     })
+
+    function handleModify(){
+        navigate("/ModificaArticolo" , {
+            state: {
+                titolo: location.state.titolo,
+                argomento: location.state.argomento,
+                img: location.state.img,
+                body: location.state.body,
+                id_articolo : location.state.id_article
+            }
+        })
+    }
+
+    function handleDelete(){
+        axios.delete("http://localhost:80/Teverola-Times-Journal/delete-article.php",{
+            data: {
+                id_articolo : location.state.id_article
+            }
+        })
+        .then((response) => {
+            console.log(response.data)
+            navigate("/HomePage")
+        })
+    }
 
 
     return(
@@ -75,12 +106,19 @@ export default function ArticlePage(){
                                     <br></br>
                                     {"Pubblicato da : "}{giornalista}
                                 </div>
+                                {user.User_ID === location.state.journalist_id ? 
+                                    <>
+                                        <button className="button is-medium is-success" onClick={handleModify}>Modifica Articolo</button>
+                                        <br></br>
+                                        <br></br>
+                                        <button className="button is-medium is-danger" onClick={handleDelete}>Elimina Articolo</button>
+                                    </>
+                                 : ""}
                             </div>
                         </div>
                     </div>
                     
-                        <img alt="article-pic" src={location.state.img} className="image is-relative mb-6" width={500} height={300}/>
-    
+                        <img alt="article-pic" src={location.state.img} className="image is-relative mb-6" width={500} height={300} />
                 </div>
             </div > 
         </>

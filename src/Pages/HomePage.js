@@ -46,7 +46,7 @@ export const HomePage = () => {
             setArticles(response.data)
         })
     },[])
-
+ 
     const articoli = articles.map ( (articolo) => {
         return(
             <ArticleCard
@@ -61,22 +61,44 @@ export const HomePage = () => {
             />
         )
     })
+    
 
     const [articoli_from_search,setArticoli_from_search] = useState()
+    const [num_articoli_trovati, setNum_Articoli_trovati] = useState(0)
 
     const get_article_from_search = (data) => {
-        if(data.lenght !== 0){
+        if(data.length !== 0){
             setArticoli_from_search(data)
+            setNum_Articoli_trovati(data.length)
+        } else{
+            setArticoli_from_search(articles)
         }
     }
-    //console.log(articoli_from_search)
+
+    let articles_from_search
+    if ( num_articoli_trovati > 0){
+        articles_from_search = articoli_from_search.map ( (articolo) => {
+            return(
+                <ArticleCard
+                    key={articolo.ID_Article}
+                    id_article={articolo.ID_Article}
+                    titolo={articolo.Titolo}
+                    argomento={articolo.Argomento}
+                    body={articolo.body}
+                    img={articolo.img}
+                    datapubblicazione={articolo.DataPubblicazione}
+                    journalist_id = {articolo.Utente}
+                />
+            )
+        })
+    }
     
     return(
         user &&
         <>
             <HomeNavbar userType={user["UserType"]} get_data={get_article_from_search}/>
-            <div className="columns is-multiline is-mobile is-flex">
-                {articoli}
+            <div className="columns is-multiline is-mobile is-8">
+                {num_articoli_trovati !==0 ? articles_from_search : articoli}
             </div>
 
         </>

@@ -15,6 +15,7 @@ import GestioneUtenti from './Pages/GestioneUtenti';
 import ArticlePage from './Pages/ArticlePage';
 import ModificaUtenti from './Pages/ModificaUtenti';
 import ModificaProfilo from './Pages/ModificaProfilo';
+import ModificaArticolo from './Pages/ModificaArticolo';
 
 function App() {
 
@@ -71,6 +72,7 @@ function App() {
             <Route exact path="/ArticlePage" element={<ArticlePage/>} />
             <Route exact path="/ModificaUtenti" element={<ModificaUtenti/>}/>
             <Route exact path="/ModificaProfilo" element={<ModificaProfilo/>}/>
+            <Route exact path="/ModificaArticolo" element={<ModificaArticolo/>} />
           </Route>
         </Routes>
 

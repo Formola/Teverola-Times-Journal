@@ -127,9 +127,9 @@ export default function GestioneUtenti(){
             
             if( id == 0){
                 Set_Error_Delete_Message("Non puoi rimuovere questo admin")
-            } else if ( users[id].UserType === "GIORNALISTA") {
-                Set_Error_Delete_Message("Errore..hai provato a eliminare un giornalista") //decidere se eliminarli o
-            } else  {Set_Error_Delete_Message("Utente eliminato con successo")}
+            } else {
+                Set_Error_Delete_Message("Utente eliminato con successo")
+            }
 
           })
           setUsers(newusers);
@@ -175,6 +175,11 @@ export default function GestioneUtenti(){
                     </tbody>
                     </table>
                     {error_delete_message}
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <p>Attenzione...se elimini i giornalisti eliminerai anche gli articoli da loro pubblicati!</p>
+
                 </div>
             </div > 
         </>
