@@ -191,40 +191,4 @@
             }
         }
     }
-
-    
-
-    if(isset($_POST)){
-
-        $request = file_get_contents("php://input");
-        $data=json_decode($request,true);
-        
-
-        if(isset($_POST["data"])){
-
-            
-            
-            $data = $_POST["data"];
-
-            print_r($data);
-            
-            $decodedData = json_decode($data, true);
-            $query =  "SELECT * FROM `utente` Email='".$decodedData["email"]."';";
-            $result = queryToDB($query);
-            if (mysqli_num_rows($result) == 1) {
-                http_response_code(401);
-                $arr = array("error" => "utente già registrato con questa email");
-                echo json_encode($arr);
-            } else {
-                $query = "INSERT INTO 
-                            `utente` (`User_ID`, `Email`, `UserType`, `Password`, `Nome`, `Cognome`, `DataInizioAbbonamento`, `DataFineAbbonamento`, `img`, `Salary`) 
-                            VALUES ( NULL,".$decodedData["email"].", \"UTENTE\" , ".$decodedData["password"]." , ".$decodedData["nome"]." ,".$decodedData["cognome"].", NULL,NULL,NULL,NULL);";
-
-                $result = queryToDB($query);
-
-            }
-        }
-    }
-
-
 ?>
