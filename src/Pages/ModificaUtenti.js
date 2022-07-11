@@ -1,7 +1,6 @@
-import React,{useState,useEffect} from "react";
+import React,{useState} from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import {HiOutlinePhotograph} from "react-icons/hi";
 import {AiOutlineArrowLeft} from "react-icons/ai"
 import {BsFillPersonFill} from "react-icons/bs"
 import logo from "../images/logosenzascritta.png"
@@ -10,7 +9,6 @@ import { FaEuroSign } from "react-icons/fa";
 export default function ModificaUtenti(){
 
     const location = useLocation()
-    console.log(location.state)
     const navigate = useNavigate();
 
     if (location.state == null) {

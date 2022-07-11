@@ -68,7 +68,7 @@ export default function ArticlePage(){
             }
         })
         .then((response) => {
-            console.log(response.data)
+            navigate("/HomePage")
         })
     }
 

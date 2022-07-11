@@ -39,7 +39,6 @@ export const WriteArticle = () => {
 
     function handleSubmit(event){
         event.preventDefault()
-        console.log(articleData)
         axios.post("http://localhost:80/Teverola-Times-Journal/publish-article.php", {
             data: {
                 title: articleData.title,

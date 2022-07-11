@@ -10,8 +10,8 @@
 
     if(isset($data)){
 
-        $nome = $data->data->nome;
-        $cognome = $data->data->cognome;
+        $nome = addslashes($data->data->nome);
+        $cognome = addslashes($data->data->cognome);
         $img = $data->data->img;
         $pw = $data->data->password;
         $id = $data->data->user_id;

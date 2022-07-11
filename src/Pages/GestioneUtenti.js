@@ -30,12 +30,6 @@ export default function GestioneUtenti(){
         })
     }, [])
 
-    function check(){
-        if(users.indexOf(user) !== 0 && users.indexOf(user) !== user.User_ID){
-            console.log("ciao")
-        }
-    }
-
     const utenti = users.map ( (user) => {
         return(
             <>
@@ -115,7 +109,6 @@ export default function GestioneUtenti(){
             }) 
         }
     }
-    console.log(user.User_ID)
 
     const [error_delete_message, Set_Error_Delete_Message] = useState("")
 
@@ -126,7 +119,7 @@ export default function GestioneUtenti(){
         if ( id !== 0) {
             newusers.splice(id,1)
         } 
-        if ( userid == user.User_ID){
+        if ( userid === user.User_ID){
             Set_Error_Delete_Message("Non puoi eliminare te stesso !")
         } else {
         axios.delete("http://localhost:80/Teverola-Times-Journal/delete-user.php", {
