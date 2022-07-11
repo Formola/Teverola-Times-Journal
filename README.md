@@ -1,74 +1,93 @@
 <<<<<<< HEAD
-# Teverola-Times-Journal
+# Teverola-Times-Journal - Guida all'installazione
 =======
-# Getting Started with Create React App
+Istruzioni dettagliate per l'installazione, la configurazione ed il lancio di test : 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Scaricare e installare NodeJs da https://nodejs.org/it/download/
+(npm, il gestore di pacchetti javascript è incluso in questa installazione)
+ 
+Tutti i file di progetto si trovano su github : https://github.com/Formola/Teverola-Times-Journal
 
-## Available Scripts
+Clonare la repo con “git clone https://github.com/Formola/Teverola-Times-Journal“
+oppure scaricare il file .zip ed estrarre la cartella “Teverola-Times-Journal”
 
-In the project directory, you can run:
+Aprire il terminale nella cartella "Teverola-Times-Journal" e digitare npm install per installare tutti i package necessari. Fatto ciò , aprire la cartella in VisualStudioCode o in qualsiasi editor di testo , e lanciare “npm start” per avviare l’applicazione su http://localhost:3000/
 
-### `npm start`
+Dopo aver fatto ciò : 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Scaricare e installare  XAMPP da https://www.apachefriends.org/download.html
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Una volta eseguita l'installazione, avviare Apache e MySQL.
 
-### `npm test`
+Andare su http://localhost/phpmyadmin/index.php
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Creare un nuovo db chiamandolo “teverola-times-journal”
 
-### `npm run build`
+Selezionare e importare prima il dump della tabella UTENTE, dopodiché importare il dump della tabella ARTICOLO ( !!eseguire gli import in questo ordine per evitare errore sulla foreign key in articolo!!)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Andare sulla propria cartella "xampp", scegliere "htdocs" e copiare al suo interno la cartella “Teverola-Times-Journal” ( non solo il contenuto , bisogna copiare proprio tutta la cartella ). 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+ 
+Link a tutte le librerie e ai files esterni da scaricare : 
+Tutti i file di progetto si trovano su github : https://github.com/Formola/Teverola-Times-Journal
+( le librerie e i package usati in react dovrebbero essere importate automaticamente eseguendo “npm install” dopo aver clonato la repo o estratta la cartella del progetto dal file .zip,  ad ogni modo quelle utilizzate sono : 
+https://bulma.io/documentation/overview/start/
+https://www.npmjs.com/package/md5
+https://www.npmjs.com/package/react-axios  -  Axios official website:  https://axios-http.com/docs/intro
+https://www.npmjs.com/package/fontawesome-4.7
+https://www.npmjs.com/package/react-router-dom
+Xampp :   https://www.apachefriends.org/download.html
+PHP Composer :  https://getcomposer.org/download/  //forse non necessario
+NodeJs  :  https://nodejs.org/it/download/
+VisualStudioCode : per una semplice visualizzazione di tutto il progetto , cliccare su open folder per importare la cartella di progetto \teverola-times , eventualmente anche la cartella \Teverola-Times-Journal  per una più semplificata visualizzazione degli script php.          https://code.visualstudio.com/download
+Documentazione di React :  https://it.reactjs.org/
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+Fase di Test : 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Sul database sono già presenti diversi utenti e articoli pubblicati dai giornalisti, per eseguire dei test provare a loggarsi con : 
 
-### Making a Progressive Web App
+ADMIN:  ( può gestire gli altri utenti , non può eliminare se stesso, se elimina un giornalista elimina anche gli articoli di quel giornalista): 
+email: paolo@libero.it
+password : paolo
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+email:  emilio@tirozzi
+password:  emilio
 
-### Advanced Configuration
+GIORNALISTA : ( può pubblicare e eventualmente modificare articoli ) :
+email : lele@adani
+password : lele
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+email : anto@cannavacciuolo
+password: anto
 
-### Deployment
+UTENTE : ( può solo leggere articoli , cercarli o modificare il profilo )
+email: homer@simpson
+password: homer
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Gli utenti una volta loggati non possono tornare alle pagine: 
+http://localhost:3000/
+http://localhost:3000/SignUp
+http://localhost:3000/Login
+si possono fare dei test digitando questi url e verificare il reindirizzamento sempre a http://localhost:3000/HomePage 
 
-### `npm run build` fails to minify
+Gli utenti loggati , a seconda del proprio ruolo , non possono accedere a pagine relative alle funzionalità presenti per altri ruoli, ad esempio : 
+ADMIN e UTENTE non possono accedere a http://localhost:3000/WriteArticle , http://localhost:3000/ModificaArticolo , solo i giornalisti possono
+GIORNALISTA e UTENTE non possono accedere a http://localhost:3000/GestioneUtenti , http://localhost:3000/ModificaUtenti , solo gli ADMIN possono
+Nessuno può accedere a http://localhost:3000/ModificaProfilo , http://localhost:3000/ArticlePage , senza prima aver cliccato sui button “Il Tuo Profilo” e “Read More” nell’anteprima articolo
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
->>>>>>> 1adeddf (Initialize project using Create React App)
+In caso di chiusura della finestra localhost:3000/… , l’utente rimane ancora loggato , per disconnettersi  permanentemente bisogna eseguire il logout
+
+
+
+
