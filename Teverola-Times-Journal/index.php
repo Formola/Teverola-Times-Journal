@@ -95,7 +95,7 @@
                 // CREATE JWT
                 $secret_Key  = '68V0zWFrS72GbpPreidkQFLfj4v9m3Ti+DXc8OB0gcM=';
                 $date   = new DateTimeImmutable();
-                $expire_at     = $date->modify('+1 month')->getTimestamp();      // Add 1 Year
+                $expire_at     = $date->modify('+1 month')->getTimestamp();      // Add 1 Month
                 $domainName = "localhost";
                 $email   = $userDecoded["Email"];                                           // Retrieved from filtered POST data
                 $request_data = [
