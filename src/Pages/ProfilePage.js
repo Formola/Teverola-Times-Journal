@@ -25,7 +25,7 @@ export default function ProfilePage(){
                 cognome: user.Cognome,
                 img: user.img,
                 user_id: user.User_ID,
-                password: md5(user.Password)
+                password: user.Password
             }
         })
     }

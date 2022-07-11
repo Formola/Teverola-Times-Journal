@@ -54,7 +54,7 @@ export default function ModificaProfilo(){
                 nome: formData.nome,
                 cognome: formData.cognome,
                 img: formData.img,
-                password: formData.password,
+                password: md5(formData.password),
                 user_id: location.state.user_id
             },
         },{
