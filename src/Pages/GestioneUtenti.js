@@ -17,7 +17,7 @@ export default function GestioneUtenti(){
         let path="/HomePage"
         navigate(path)
     }
-
+    
 
     useEffect( () => {
         axios.get("http://localhost:80/Teverola-Times-Journal/index.php" , {
@@ -29,6 +29,12 @@ export default function GestioneUtenti(){
             setUsers(response.data)
         })
     }, [])
+
+    function check(){
+        if(users.indexOf(user) !== 0 && users.indexOf(user) !== user.User_ID){
+            console.log("ciao")
+        }
+    }
 
     const utenti = users.map ( (user) => {
         return(
@@ -61,8 +67,9 @@ export default function GestioneUtenti(){
                         </button>
                     </td>
                     : "" }
+                    
 
-                    {users.indexOf(user) !== 0 ? 
+                    {users.indexOf(user) !== 0  ? 
                     <td>
                         <button className="button ml-4 is-small is-danger mt-2"
                             data-rowid={users.indexOf(user)}
@@ -89,31 +96,39 @@ export default function GestioneUtenti(){
         const row_datafine = event.currentTarget.getAttribute("datafine")
 
         let path="/ModificaUtenti"
-        navigate(path, {
-            state: {
-                user_id : row_id,
-                user_type: row_user_type,
-                nome: row_nome,
-                cognome: row_cognome,
-                email: row_email,
-                salary: row_salary,
-                datainizioabbonamento: row_datainizio,
-                datafineabbonamento: row_datafine,
-                fromManagement: true
-            }
-        }) 
+
+        if(row_id === user.User_ID){
+            Set_Error_Delete_Message("Non puoi cambiarti ruolo da solo")
+        }else{
+            navigate(path, {
+                state: {
+                    user_id : row_id,
+                    user_type: row_user_type,
+                    nome: row_nome,
+                    cognome: row_cognome,
+                    email: row_email,
+                    salary: row_salary,
+                    datainizioabbonamento: row_datainizio,
+                    datafineabbonamento: row_datafine,
+                    fromManagement: true
+                }
+            }) 
+        }
     }
+    console.log(user.User_ID)
 
     const [error_delete_message, Set_Error_Delete_Message] = useState("")
 
     const DeleteUser = (id,userid) => {
-        console.log(id)
+        console.log(userid)
 
         const newusers = [...users];
         if ( id !== 0) {
             newusers.splice(id,1)
         } 
-        
+        if ( userid == user.User_ID){
+            Set_Error_Delete_Message("Non puoi eliminare te stesso !")
+        } else {
         axios.delete("http://localhost:80/Teverola-Times-Journal/delete-user.php", {
             headers: {
               Authorization: "authorizationToken"
@@ -133,13 +148,13 @@ export default function GestioneUtenti(){
 
           })
           setUsers(newusers);
+        }
           
     }
 
     function handleDelete(event){
         const row_id = event.currentTarget.getAttribute("data-rowid")
         const userid = event.currentTarget.getAttribute("id_user")
-        console.log(row_id,userid)
         DeleteUser(row_id,userid)
     }
     

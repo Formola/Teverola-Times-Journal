@@ -2,7 +2,7 @@ import React,{useState,useContext} from "react";
 import logo from "../images/logosenzascritta.png"
 import {AiOutlineArrowLeft} from "react-icons/ai"
 import "./WriteArticle.css"
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { UserContext } from "./UserContexts";
 import axios from "axios";
 
@@ -10,6 +10,9 @@ export const WriteArticle = () => {
 
     const {user,setUser} = useContext(UserContext)
 
+    if ( user.UserType !== "GIORNALISTA"){
+        return <Navigate to="/HomePage"/>
+    }
     const [message,setMessage] = useState("")
 
     const [articleData, setArticleData] = useState(

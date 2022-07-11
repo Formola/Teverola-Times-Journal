@@ -10,6 +10,7 @@ import { FaEuroSign } from "react-icons/fa";
 export default function ModificaUtenti(){
 
     const location = useLocation()
+    console.log(location.state)
     const navigate = useNavigate();
 
     if (location.state == null) {
