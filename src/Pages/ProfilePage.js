@@ -1,10 +1,10 @@
-import React,{useState,useContext, useEffect} from "react";
-import "./ProfilePage.css"
+import React,{useContext, useEffect} from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import logo from "../images/logosenzascritta.png"
 import { UserContext } from "./UserContexts";
 import { useNavigate,  } from "react-router-dom";
 import axios from "axios";
+import md5 from "md5";
 
 
 export default function ProfilePage(){
@@ -24,11 +24,11 @@ export default function ProfilePage(){
                 nome: user.Nome,
                 cognome: user.Cognome,
                 img: user.img,
-                user_id: user.User_ID
+                user_id: user.User_ID,
+                password: md5(user.Password)
             }
         })
     }
-    console.log(user)
 
     useEffect(() => {
         if (!window.localStorage.getItem("JWT")) {
@@ -91,7 +91,7 @@ export default function ProfilePage(){
                     <div className="is-flex is-flex-direction-column has-text-white has-text-centered">
                         
                         <div className="box is-size-3 mt-2">
-                            <h1 className="title is-size-3">Profilo di {user ? user["Nome"] : "nada"}</h1>
+                            <h1 className="title is-size-3">Profilo di {user ? user["Nome"] : "nada"} {user ? user["Cognome"] : "nada"}</h1>
                             <div className="column">
                                 <div className="is-flex-direction-column">
                                     <span className="is-size-4 has-text-weight-bold">Ruolo: </span>

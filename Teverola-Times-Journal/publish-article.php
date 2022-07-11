@@ -10,9 +10,9 @@
 
     if(isset($data)){
 
-        $title = $data->data->title;
-        $argomento = $data->data->argomento;
-        $body = $data->data->body;
+        $title = addslashes($data->data->title);
+        $argomento = addslashes($data->data->argomento);
+        $body = addslashes($data->data->body)   ;
         $img = $data->data->img;
         $journalist_id = $data->data->id_utente;
 

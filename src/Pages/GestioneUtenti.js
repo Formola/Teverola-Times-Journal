@@ -110,11 +110,11 @@ export default function GestioneUtenti(){
         console.log(id)
 
         const newusers = [...users];
-        if ( id != 0) {
-            const removedUser = newusers.splice(id,1)
+        if ( id !== 0) {
+            newusers.splice(id,1)
         } 
         
-        const deleteduser = axios.delete("http://localhost:80/Teverola-Times-Journal/delete-user.php", {
+        axios.delete("http://localhost:80/Teverola-Times-Journal/delete-user.php", {
             headers: {
               Authorization: "authorizationToken"
             },
@@ -125,7 +125,7 @@ export default function GestioneUtenti(){
           .then((response) => {
             console.log(response)
             
-            if( id == 0){
+            if( id === 0){
                 Set_Error_Delete_Message("Non puoi rimuovere questo admin")
             } else {
                 Set_Error_Delete_Message("Utente eliminato con successo")
@@ -147,14 +147,14 @@ export default function GestioneUtenti(){
     return(
         user.UserType === "ADMIN" ? 
         <>
-            <div className="hero is-fullheight has-background-white ">
+            <div className="hero is-fullheight has-background-white mb-6">
                 <div className="p-2">
                     <span className="back-arrow"><AiOutlineArrowLeft/></span>
                     <img src={logo} alt="logo" onClick={changeRoute} className="image is-138x128 mgl-medium"/>
                 </div>
 
                 <div className="hero-body container is-flex-direction-column mt-6">
-                    <table className="table">
+                    <table className="table mt-4">
                     <thead>
                         <tr>
                             <th>User_ID</th>

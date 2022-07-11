@@ -11,8 +11,9 @@ export default function ArticlePage(){
     const location = useLocation()
     const [journalists, setJournalists] = useState([])
     const {user,setUser} = useContext(UserContext)
-
+    
     const navigate = useNavigate()
+    window.scrollTo(0,0)
 
     if (location.state == null) {
             
@@ -68,7 +69,6 @@ export default function ArticlePage(){
         })
         .then((response) => {
             console.log(response.data)
-            navigate("/HomePage")
         })
     }
 
@@ -108,17 +108,17 @@ export default function ArticlePage(){
                                 </div>
                                 {user.User_ID === location.state.journalist_id ? 
                                     <>
-                                        <button className="button is-medium is-success" onClick={handleModify}>Modifica Articolo</button>
+                                        <button className="button is-small is-success" onClick={handleModify}>Modifica Articolo</button>
                                         <br></br>
                                         <br></br>
-                                        <button className="button is-medium is-danger" onClick={handleDelete}>Elimina Articolo</button>
+                                        <button className="button is-small is-danger" onClick={handleDelete}>Elimina Articolo</button>
                                     </>
                                  : ""}
                             </div>
                         </div>
                     </div>
-                    
-                        <img alt="article-pic" src={location.state.img} className="image is-relative mb-6" width={500} height={300} />
+                                    
+                        <img alt="article-pic" src={location.state.img} className="article-img" width={500} height={300} />
                 </div>
             </div > 
         </>

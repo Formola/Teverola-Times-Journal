@@ -1,11 +1,13 @@
-import React,{useEffect, useState} from "react";
+import React,{ useState} from "react";
 import {HiOutlinePhotograph} from "react-icons/hi";
 import {AiOutlineArrowLeft} from "react-icons/ai"
+import {RiLockPasswordFill} from "react-icons/ri"
 import {BsFillPersonFill} from "react-icons/bs"
 import logo from "../images/logosenzascritta.png"
 import { useNavigate,useLocation } from "react-router-dom";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
+import md5 from "md5";
 
 
 export default function ModificaProfilo(){
@@ -30,6 +32,7 @@ export default function ModificaProfilo(){
             nome: location.state.nome,
             cognome: location.state.cognome,
             img: location.state.img,
+            password: location.state.password,
             user_id: location.state.user_id
         }
     )
@@ -51,6 +54,7 @@ export default function ModificaProfilo(){
                 nome: formData.nome,
                 cognome: formData.cognome,
                 img: formData.img,
+                password: md5(formData.password),
                 user_id: location.state.user_id
             },
         },{
@@ -113,6 +117,23 @@ export default function ModificaProfilo(){
                                                 <BsFillPersonFill/>
                                                 </span>
                                             </p>
+                                    </div>
+
+                                    <div className="field">
+                                        <label className="label has-text-black is-size-4 has-text-left" >Password</label>
+                                        <p className="control has-icons-left">
+                                            <input 
+                                                className="input"
+                                                type="password" 
+                                                placeholder="Inserisci nuova password"
+                                                onChange={handleChange}
+                                                name="password"
+                                                value={formData.password}
+                                            />
+                                            <span className="icon is-small is-left">
+                                                <RiLockPasswordFill/>
+                                            </span>
+                                        </p>
                                     </div>
 
                                     <div className="field">

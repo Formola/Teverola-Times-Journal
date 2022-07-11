@@ -85,7 +85,7 @@ export const WriteArticle = () => {
                                                 className="input is-capitalized	"
                                                 type="text"
                                                 placeholder="Titolo"
-                                                maxLength="20"
+                                                maxLength="100"
                                                 required
                                                 name="title"
                                                 onChange={handleChange}
@@ -131,7 +131,7 @@ export const WriteArticle = () => {
                                             className="textarea is-link" 
                                             placeholder="body articolo"
                                             required
-                                            maxLength={300}
+                                            maxLength={10000}
                                             name="body"
                                             onChange={handleChange}
                                             value={articleData.body}

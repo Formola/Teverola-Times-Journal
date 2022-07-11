@@ -40,10 +40,8 @@ export default function ModificaArticolo(){
 
     }
 
-    console.log(location.state)
     function handleSubmit(event){
         event.preventDefault()
-        console.log(articleData)
         axios.post("http://localhost:80/Teverola-Times-Journal/modify-article.php", {
             data: {
                 title: articleData.title,
@@ -59,7 +57,6 @@ export default function ModificaArticolo(){
             } 
        })
        .then((response) => {
-            console.log(response.data)
                 setMessage("Articolo Modificato!")
                 navigate("/HomePage")
        })

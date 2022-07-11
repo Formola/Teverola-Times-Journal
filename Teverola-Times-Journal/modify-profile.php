@@ -13,10 +13,11 @@
         $nome = $data->data->nome;
         $cognome = $data->data->cognome;
         $img = $data->data->img;
+        $pw = $data->data->password;
         $id = $data->data->user_id;
 
         $query = "UPDATE `utente` 
-                  SET `Nome`='$nome',`Cognome`='$cognome',`img`='$img' 
+                  SET `Nome`='$nome',`Cognome`='$cognome',`img`='$img' , `Password`='$pw'
                   WHERE User_ID = '$id' ";
 
         $result = queryToDB($query);
