@@ -113,7 +113,6 @@ export default function GestioneUtenti(){
     const [error_delete_message, Set_Error_Delete_Message] = useState("")
 
     const DeleteUser = (id,userid) => {
-        console.log(userid)
 
         const newusers = [...users];
         if ( id !== 0) {
@@ -131,7 +130,6 @@ export default function GestioneUtenti(){
             }
           })
           .then((response) => {
-            console.log(response)
             
             if( id === 0){
                 Set_Error_Delete_Message("Non puoi rimuovere questo admin")

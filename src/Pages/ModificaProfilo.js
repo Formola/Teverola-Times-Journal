@@ -38,11 +38,11 @@ export default function ModificaProfilo(){
     )
 
     function handleChange(event){
-        const {name,value} = event.target
+        const {name,value,password} = event.target
         setFormData(prevFormData => {
             return {
                 ...prevFormData,
-                [name] : value
+                [name] : value,
             }
         })
     }
@@ -54,7 +54,7 @@ export default function ModificaProfilo(){
                 nome: formData.nome,
                 cognome: formData.cognome,
                 img: formData.img,
-                password: md5(formData.password),
+                password: location.state.password===formData.password ? location.state.password : md5(formData.password),
                 user_id: location.state.user_id
             },
         },{
