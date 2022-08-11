@@ -8,7 +8,7 @@ import axios from "axios";
 
 export default function ModificaArticolo(){
 
-    const {user,setUser} = useContext(UserContext)
+    const {user} = useContext(UserContext)
     const location = useLocation()
 
     if (location.state == null) {

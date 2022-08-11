@@ -17,7 +17,7 @@ export const SignUpPage = () =>{
 
     const navigate = useNavigate();
     const [error, setError] = useState("")
-    const {user,setUser} = useContext(UserContext) 
+    const {user} = useContext(UserContext) 
 
     const routeChange = () => {
         let path = "/";

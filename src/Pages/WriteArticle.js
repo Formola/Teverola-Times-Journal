@@ -8,7 +8,7 @@ import axios from "axios";
 
 export const WriteArticle = () => {
 
-    const {user,setUser} = useContext(UserContext)
+    const {user} = useContext(UserContext)
 
     if ( user.UserType !== "GIORNALISTA"){
         return <Navigate to="/HomePage"/>

@@ -38,7 +38,7 @@ export default function ModificaProfilo(){
     )
 
     function handleChange(event){
-        const {name,value,password} = event.target
+        const {name,value} = event.target
         setFormData(prevFormData => {
             return {
                 ...prevFormData,

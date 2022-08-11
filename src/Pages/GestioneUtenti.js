@@ -10,7 +10,7 @@ import {TiDelete} from "react-icons/ti"
 export default function GestioneUtenti(){
 
     const navigate = useNavigate()
-    const {user,setUser} = useContext(UserContext)
+    const {user} = useContext(UserContext)
     const [users,setUsers] = useState([])
 
     function changeRoute(){

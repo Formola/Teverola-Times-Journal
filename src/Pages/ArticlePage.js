@@ -10,7 +10,7 @@ export default function ArticlePage(){
 
     const location = useLocation()
     const [journalists, setJournalists] = useState([])
-    const {user,setUser} = useContext(UserContext)
+    const {user} = useContext(UserContext)
     
     const navigate = useNavigate()
     window.scrollTo(0,0)
